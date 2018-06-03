@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+<%= link_to 'New Story', new_story_path %>
+<h1>Stories</h1>
+  <% @stories.each do |story| %>
+    <div class="blog-post">
+      <h2 class="blog-post-title"><%= story.title %></h2>
+      <p class="blog-post-meta"><%= story.created_at.strftime("%b %d, %Y") %> by <a href="#"><%= story.user.email %></a></p>
+
+      <p><%= story.content %></p>
+
+        <%= link_to 'Show', story %>
+        <% if story.user == current_user %>
+        <%= link_to 'Edit', edit_story_path(story) %>
+        <%= link_to 'Destroy', story, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <% end %>
+      </div>
+      <br>
+    <% end %>
+<br>
+
+<%= link_to 'New Story', new_story_path %>
